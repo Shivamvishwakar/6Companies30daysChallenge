@@ -1,0 +1,28 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> st=new Stack<>();
+        String opt="+-*/";
+        for(String s: tokens){
+            if(opt.contains(s) && !st.isEmpty()){
+                int op1=st.pop();
+                int op2=st.pop();
+                int ans=helper(op1,op2,s);
+                st.push(ans);
+            }else{
+                st.push(Integer.parseInt(s));
+            }
+        }
+        return st.pop();
+    }
+    public int helper(int op1,int op2,String s){
+        if(s.equals("+")){
+            return op1+op2;
+        }else if(s.equals("-")){
+            return op2-op1;
+        }else if(s.equals("/")){
+            return op2/op1;
+        }else{
+            return op2*op1;
+        }
+    }
+}

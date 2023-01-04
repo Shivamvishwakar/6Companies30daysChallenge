@@ -1,0 +1,44 @@
+class Solution {
+    public int maxRotateFunction(int[] nums) {
+        int sumup=0;
+        int sum=0;
+        for(int i=0;i<nums.length;i++){
+            sumup+=nums[i]*i;
+            sum+=nums[i];
+        }
+        int max=sumup;
+        for(int i=nums.length-1;i>=1;i--){
+            sumup=sumup+sum-nums.length*nums[i];
+            if(sumup>max){
+                max=sumup;
+            }
+        }
+        return max;
+
+    }
+    //     int k=nums.length;
+    //     int sum=sum(nums);
+    //     for(int i=0;i<k-1;i++){
+    //         rotate(nums);
+    //         int sumx=sum(nums);
+    //         if(sum<sumx){
+    //             sum=sumx;
+    //         }
+    //     }
+    //     return sum;
+    // }
+    // public int sum(int[]nums){
+    //     int sum=0;
+    //     for(int i=0;i<nums.length;i++){
+    //         sum+=nums[i]*i;
+    //     }
+    //     return sum;
+    // }
+    // public void rotate(int[]num){
+    //     int x=num[0];
+    //    for(int i=0;i<num.length-1;i++){
+    //        num[i]=num[i+1];
+    //    } 
+    //    num[num.length-1]=x;
+    // }
+}
